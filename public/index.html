@@ -1,35 +1,54 @@
 <!DOCTYPE html>
-<html lang="en" ng-app = "myApp">
+<html lang="en" ng-app = "fitApp">
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"  crossorigin="anonymous"></script>
-</head>
-<body ng-controller = "appCtrl">
-<input ng-model = "user.username">
-<input ng-model = "user.password">
-<button ng-click = "submit()"></button>
-{{user}}
-</body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+<body ng-controller = "mainCtrl">
+<form novalidate ng-submit = "submit()">
+    <div class = "col-md-6">
+        <div class = "form-group" >
+            <label for = "weight" class = "control-label">Weight</label>
+            <input placeholder = "Enter Weight in Lbs" class="form-control" name = "weight" id = "weight" type = "text" ng-model ="dataPt.weight">
+        </div>
+        <div class = "form-group">
+            <label for = "waist" class = "control-label">Waist Size</label>
+            <input placeholder = "Enter Waist size in inches" class="form-control" name = "waist" id = "waist" type = "number" ng-model ="dataPt.waist">
+        </div>
+        <div class = "form-group">
+            <label for = "squat" class = "control-label">Squat</label>
+            <input placeholder = "Enter Squat 1RM in lbs" class="form-control"  name = "squat" id ="squat" type = "number" ng-model ="dataPt.squat">
+        </div>
+        <div class = "form-group">
+            <label for = "bench_press" class = "control-label">Bench Press</label>
+            <input placeholder = "Enter Bench Press 1RM in lbs" class="form-control" name = "bench_press" id = "bench_press" type = "number" class="form-control"ng-model ="dataPt.bench">
+        </div>
+        <div class = "form-group">
+            <label for = "deadlift" class = "control-label">Deadlift</label>
+            <input placeholder = "Enter Deadlift 1RM in lbs" class="form-control" name = "deadlift" id = "deadlift" type = "number" class="form-control"ng-model ="dataPt.deadlift">
+        </div>
+    </div>
+    <button type = "submit" class = "btn btn-primary">Submit</button>
+</form>
+{{dataPt}}
+</body>
+</html>
 <script>
-    angular.module('myApp', []);
-    angular.module('myApp').controller('appCtrl', function ($scope, $http) {
-        $scope.user = {
-            name: "",
-            password: ""
-        };
-        $scope.submit = function() {
-            $http({
-                url: 'http://localhost:3000/api/users',
-                method: 'POST',
-                data: $scope.user,
-                //{username: $scope.user.username, password: $scope.user.password},
-            }).success(function (response) {
-                console.log(response);
-            });
+    angular.module('fitApp', []);
+    angular.module('fitApp').controller('mainCtrl', function($scope, $http) {
+        $scope.dataPt = {};
+        $scope.dataPt.date = Date.now();
+        $scope.submit = function () {
+            alert("Submit Successful");
         }
+
     });
 </script>
-</html>
