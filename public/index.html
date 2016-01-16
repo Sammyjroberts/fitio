@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app = "myApp">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"  crossorigin="anonymous"></script>
+</head>
+<body ng-controller = "appCtrl">
+<input ng-model = "user.username">
+<input ng-model = "user.password">
+<button ng-click = "submit()"></button>
+{{user}}
+</body>
+
+<script>
+    angular.module('myApp', []);
+    angular.module('myApp').controller('appCtrl', function ($scope, $http) {
+        $scope.user = {
+            name: "",
+            password: ""
+        };
+        $scope.submit = function() {
+            $http({
+                url: 'http://localhost:3000/api/users',
+                method: 'POST',
+                data: $scope.user,
+                //{username: $scope.user.username, password: $scope.user.password},
+            }).success(function (response) {
+                console.log(response);
+            });
+        }
+    });
+</script>
+</html>
